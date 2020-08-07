@@ -22,7 +22,57 @@ public class AdminDaoImpl implements AdminDao {
     private ResultSet resultSet = null;
 
     @Override
-    public ArrayList<Admin> getAdminByNameByPass(String username, String password) {
+    public void select() {
+        try {
+            connection = JDBCutils.getConnection();
+            // 获取连接
+
+            // 在此处开启事物
+            connection.setAutoCommit(false);
+
+
+            String sql1 = "select * from admin";
+
+            PreparedStatement pstmt1 = connection.prepareStatement(sql1);
+            ResultSet set = pstmt1.executeQuery();
+            ArrayList<Admin> admins = new ArrayList<>();
+            while (set.next()){
+                Admin admin1 = new Admin();
+                admin1.setAdaminId(set.getInt(1));
+                admin1.setAdminName(set.getString(2));
+                admin1.setPassWord(set.getString(3));
+                admins.add(admin1);
+            }
+            for (Admin admin1:admins
+            ) {
+                System.out.println(admin1);
+            }
+
+            // 提交事物
+            connection.commit();
+
+        }catch (SQLException e){
+            try {
+
+                // 添加失败 事物回滚 避免数据失误
+                connection.rollback();
+            }catch (SQLException e1){
+                e1.printStackTrace();
+            }
+
+            e.printStackTrace();
+
+        }finally {
+            JDBCutils.close(pstmt,connection);
+        }
+
+
+
+    }
+
+    @Override
+    public Admin getAdminByNameByPass(String username, String password) {
+        Admin admin = null;
         try {
             connection = JDBCutils.getConnection();
             String sql = "select * from admin where adminName = ? and password = ?";
@@ -31,17 +81,21 @@ public class AdminDaoImpl implements AdminDao {
             pstmt.setString(2,password);
 
             resultSet = pstmt.executeQuery();
+
+
+
             ArrayList<Admin> admins = new ArrayList<>();
             while (resultSet.next()){
-                Admin admin1 = new Admin();
-                admin1.setAdaminId(resultSet.getInt("adminId"));
-                admin1.setAdminName(resultSet.getString(2));
+                admin = new Admin();
+                admin.setAdaminId(resultSet.getInt("adminId"));
+                admin.setAdminName(resultSet.getString(2));
 
-                admin1.setPassWord(resultSet.getString("password"));
-                admins.add(admin1);
+                admin.setPassWord(resultSet.getString("password"));
+                admins.add(admin);
+//                System.out.println(admin1);
             }
-            System.out.println("----------------查询成功-----------------");
-            return admins;
+
+
 
         }catch (SQLException e){
             System.out.println("----------------查询失败-----------------");
@@ -51,7 +105,7 @@ public class AdminDaoImpl implements AdminDao {
         }
 
 
-        return null;
+        return admin;
     }
 
     @Override

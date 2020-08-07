@@ -6,8 +6,11 @@ import java.util.ArrayList;
 
 public interface AdminDao {
 
+
+    public void select();
+
     // 查询
-    public ArrayList<Admin> getAdminByNameByPass(String username, String password);
+    public Admin getAdminByNameByPass(String username, String password);
 
     // 显示所有数据
 

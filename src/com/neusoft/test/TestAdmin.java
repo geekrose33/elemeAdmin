@@ -17,7 +17,7 @@ public class TestAdmin {
 
 
         System.out.println("----------- 查询---------------");
-        ArrayList<Admin> admin = adminDao.getAdminByNameByPass("zhangsan","123");
+        Admin admin = adminDao.getAdminByNameByPass("zhangsan","123");
         System.out.println(admin);
         System.out.println("----------- 添加---------------");
         Admin admin1 = new Admin("盖饭英雄5","9527");

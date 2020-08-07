@@ -53,18 +53,13 @@ public class ElmAdmin {
                             businessView.listBusinessAll();
                             break;
                         case 2:
-                            System.out.println("搜索商家");
-                            System.out.println("请输入关键字（关于商家名和地址）： ");
-                            String keyword = new Scanner(System.in).nextLine();
-                            new BusinessViewImpl().listBusinessSelect(keyword);
+
+                            new BusinessViewImpl().listBusinessSelect();
                             break;
                         case 3:
 //                            System.out.println("新建商家");
-                            System.out.println("请输入商家名");
-                            String businessName = new Scanner(System.in).nextLine();
-                            System.out.println("请输入商家密码");
-                            String businessPass = new Scanner(System.in).nextLine();
-                            new BusinessViewImpl().listBusinessInsert(businessName,businessPass);
+
+                            new BusinessViewImpl().listBusinessInsert();
                             break;
                         case 4:
                             System.out.println("删除商家  ---  请输入商家id");

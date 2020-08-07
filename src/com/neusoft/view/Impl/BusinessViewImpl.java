@@ -29,7 +29,12 @@ public class BusinessViewImpl implements BusinessView {
     }
 
     @Override
-    public void listBusinessInsert(String businessName, String businessPass) {
+    public void listBusinessInsert() {
+
+        System.out.println("请输入商家名");
+        String businessName = new Scanner(System.in).nextLine();
+        System.out.println("请输入商家密码");
+        String businessPass = new Scanner(System.in).nextLine();
 
 
         new BusinessImpl().save(businessName,businessPass);
@@ -38,9 +43,11 @@ public class BusinessViewImpl implements BusinessView {
     }
 
     @Override
-    public void listBusinessSelect(String keyword) {
+    public void listBusinessSelect() {
 
-
+        System.out.println("搜索商家");
+        System.out.println("请输入关键字（关于商家名和地址）： ");
+        String keyword = new Scanner(System.in).nextLine();
 
 
 

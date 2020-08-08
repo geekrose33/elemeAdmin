@@ -15,6 +15,6 @@ public interface FoodDao {
     // 删除
     public void delete(Integer foodId);
     // 修改
-    public void update(Food food,Integer foodId);
+    public void update(String foodName,Integer foodId);
 
 }

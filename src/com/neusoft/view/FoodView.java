@@ -14,4 +14,6 @@ public interface FoodView {
     // 修改
     public void update();
 
+
+
 }

@@ -1,5 +1,6 @@
 package com.neusoft.dao;
 
+import com.neusoft.domain.Admin;
 import com.neusoft.domain.Business;
 
 import java.util.List;
@@ -17,4 +18,13 @@ public interface BusinessDao {
 
     // 删除商家
     public void delete(Integer id);
+
+    public Business getBusinessByNameByPass(Integer businessId, String password);
+
+    // xiugai
+    public void update();
+
+    // 改密码
+    public void updatePass(String password,Integer businessId);
+
 }

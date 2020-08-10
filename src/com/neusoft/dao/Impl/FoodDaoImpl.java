@@ -196,6 +196,41 @@ public class FoodDaoImpl implements FoodDao {
         }
     }
 
+    @Override
+    public void searchFood(Integer businessId) {
+        String sql = "select * from food where businessId = ?";
+        try {
+            connection = JDBCutils.getConnection();
+
+
+
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1,businessId);
+            resultSet = pstmt.executeQuery();
+            resultSet.next();
+            // 在使用resultset toString 之前一定要next
+            // 因为结果集开始时光标在元素之前
+            System.out.println("食物Id： " + resultSet.getInt(1));
+            System.out.println("食物名称： " + resultSet.getString(2));
+            System.out.println("食物描述： " + resultSet.getString(3));
+            System.out.println("食物单价： " + resultSet.getDouble(4));
+            System.out.println("商家Id ： " + resultSet.getInt(5));
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            JDBCutils.close(resultSet,pstmt,connection);
+        }
+    }
+
+
+
+
+
+
+
+
     // 调用重载后方法
     public void update(int foodId,String foodExpain) {
         try {

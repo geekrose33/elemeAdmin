@@ -158,4 +158,168 @@ public class BusinessImpl implements BusinessDao {
             JDBCutils.close(pstmt,connection);
         }
     }
+
+    @Override
+    public Business getBusinessByNameByPass(Integer businessId, String password) {
+        Business business = null;
+        String sql = "select * from business where businessId = ? and password = ?";
+        try {
+            connection = JDBCutils.getConnection();
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1,businessId);
+            pstmt.setString(2,password);
+            resultSet = pstmt.executeQuery();
+            while (resultSet.next()){
+                business = new Business();
+                business.setBusinessId(resultSet.getInt(1));
+                business.setPassword(resultSet.getString(2));
+                business.setBusinessName(resultSet.getString(3));
+                business.setBusinessAddress(resultSet.getString(4));
+                business.setBusinessExplain(resultSet.getString(5));
+                business.setStarPrice(resultSet.getDouble(6));
+                business.setDeliveryPrice(resultSet.getDouble(7));
+
+
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            JDBCutils.close(resultSet,pstmt,connection);
+        }
+
+        return business;
+    }
+
+    @Override
+    public void update() {
+        System.out.println("请输入参数");
+    }
+
+
+
+    @Override
+    public void updatePass(String password, Integer businessId) {
+        String sql = "update business set password = ? where businessId = ?";
+
+        try {
+
+            connection = JDBCutils.getConnection();
+            // 开始事物
+            connection.setAutoCommit(false);
+
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1,password);
+            pstmt.setInt(2,businessId);
+            pstmt.executeUpdate();
+            System.out.println("修改密码成功");
+            connection.commit();
+        }catch (SQLException e){
+            try {
+                connection.rollback();
+            }catch (SQLException e1){
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }finally {
+            JDBCutils.close(pstmt,connection);
+        }
+
+    }
+
+
+
+
+
+    public void update(String businessName,Integer businessId){
+        String sql = "update business set businessName = ? where businessId = ?";
+        try {
+            connection = JDBCutils.getConnection();
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1,businessName);
+            pstmt.setInt(2,businessId);
+            pstmt.executeUpdate();
+            System.out.println("修改成功");
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            JDBCutils.close(pstmt,connection);
+        }
+
+
+    }
+    public void update(Integer businessId,String businessAddress){
+        String sql = "update business set businessAddress = ? where businessId = ?";
+        try {
+            connection = JDBCutils.getConnection();
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1,businessAddress);
+            pstmt.setInt(2,businessId);
+            pstmt.executeUpdate();
+            System.out.println("修改成功");
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            JDBCutils.close(pstmt,connection);
+        }
+
+
+    }
+    public void update(String businessExplain , Integer businessId,String businessName){
+        String sql = "update business set businessExpalin = ? where businessId = ?";
+        try {
+            connection = JDBCutils.getConnection();
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1,businessExplain);
+            pstmt.setInt(2,businessId);
+            pstmt.executeUpdate();
+            System.out.println("修改成功");
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            JDBCutils.close(pstmt,connection);
+        }
+
+
+    }
+    public void update(Integer starPrice , Integer businessId){
+        String sql = "update business set starPrice = ? where businessId = ?";
+        try {
+            connection = JDBCutils.getConnection();
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1,starPrice);
+            pstmt.setInt(2,businessId);
+            pstmt.executeUpdate();
+            System.out.println("修改成功");
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            JDBCutils.close(pstmt,connection);
+        }
+
+
+    }
+    public void update(Integer deliveryPrice , Integer businessId,String businessName){
+        String sql = "update business set deliveryPrice = ? where businessId = ?";
+        try {
+            connection = JDBCutils.getConnection();
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1,deliveryPrice);
+            pstmt.setInt(2,businessId);
+            pstmt.executeUpdate();
+            System.out.println("修改成功");
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            JDBCutils.close(pstmt,connection);
+        }
+
+
+    }
+
 }

@@ -134,6 +134,7 @@ public class BusinessViewImpl implements BusinessView {
         System.out.println("是否要修改商家描述（y/n):");
         String s2= new Scanner(System.in).nextLine();
         if (s2.equals("y")){
+            System.out.println("请输入新的商家描述");
             String businessExplain = new Scanner(System.in).nextLine();
             new BusinessImpl().update(businessExplain,business.getBusinessId(),business.getBusinessName());
         }else if (s2.equals("n")){

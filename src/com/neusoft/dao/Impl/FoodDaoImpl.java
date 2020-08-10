@@ -256,7 +256,7 @@ public class FoodDaoImpl implements FoodDao {
             JDBCutils.close(pstmt,connection);
         }
     }
-    public void update(Integer foodPrice, int foodId) {
+    public void update(Double foodPrice, int foodId) {
         try {
             connection = JDBCutils.getConnection();
             // 开启事物
@@ -264,7 +264,7 @@ public class FoodDaoImpl implements FoodDao {
 
             String sql = "update food set foodPrice = ? where foodId = ?";
             pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1,foodPrice);
+            pstmt.setDouble(1,foodPrice);
             pstmt.setInt(2,foodId);
             pstmt.executeUpdate();
             connection.commit();

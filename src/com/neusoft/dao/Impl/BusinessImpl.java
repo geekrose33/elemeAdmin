@@ -268,7 +268,7 @@ public class BusinessImpl implements BusinessDao {
 
     }
     public void update(String businessExplain , Integer businessId,String businessName){
-        String sql = "update business set businessExpalin = ? where businessId = ?";
+        String sql = "update business set businessExplain = ? where businessId = ?";
         try {
             connection = JDBCutils.getConnection();
             pstmt = connection.prepareStatement(sql);

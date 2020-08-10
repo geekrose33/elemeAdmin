@@ -16,11 +16,13 @@ public class TestBusiness {
 //        new BusinessImpl().listBusiness("万家饺子","沈阳");
 //        new BusinessImpl().listBusiness(null,"沈阳");
 //        new BusinessImpl().save("味之屋2","122");
-        List<Business> list = new BusinessImpl().businessSelect("味之屋");
-        for (Business business:list
-             ) {
-            System.out.println(business);
-        }
+//        List<Business> list = new BusinessImpl().businessSelect("味之屋");
+//        for (Business business:list
+//             ) {
+//            System.out.println(business);
+//        }
+            new BusinessImpl().update("好吃就完了",10001,"王婆大虾");
+
 
     }
 }

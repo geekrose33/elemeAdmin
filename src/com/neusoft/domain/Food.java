@@ -12,7 +12,7 @@ public class Food {
     private int foodId;
     private String foodName;
     private String foodExplain;
-    private int foodPrice;
+    private double foodPrice;
     private int businessId;
 
     public int getFoodId() {
@@ -39,11 +39,11 @@ public class Food {
         this.foodExplain = foodExplain;
     }
 
-    public int getFoodPrice() {
+    public double getFoodPrice() {
         return foodPrice;
     }
 
-    public void setFoodPrice(int foodPrice) {
+    public void setFoodPrice(double foodPrice) {
         this.foodPrice = foodPrice;
     }
 
@@ -66,7 +66,7 @@ public class Food {
                 '}';
     }
 
-    public Food(String foodName, String foodExplain, int foodPrice, int businessId) {
+    public Food(String foodName, String foodExplain, double foodPrice, int businessId) {
         this.foodName = foodName;
         this.foodExplain = foodExplain;
         this.foodPrice = foodPrice;

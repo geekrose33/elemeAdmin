@@ -59,9 +59,10 @@ public class ElmBusiness {
                         new BusinessViewImpl().updatePass(business);
                         break;
                     case 4:
-                        System.out.println("二级标题（管理食物）： 1. 查看食物 2. 增加食物 3.修改食物 4.删除食物 5. 退出二级");
                         int i = 0;
                         while (i != 5){
+                            System.out.println("二级标题（管理食物）： 1. 查看食物 2. 增加食物 3.修改食物 4.删除食物 5. 退出二级");
+                            System.out.println("请选择你的二级菜单编号");
                             i = input.nextInt();
 
                             switch (i){
@@ -79,6 +80,7 @@ public class ElmBusiness {
                                     break;
                                 case 5:
                                     System.out.println("退出二级");
+                                    break;
                                 default:
                                     System.out.println("没有这个选项！");
 
